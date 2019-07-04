@@ -4,27 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="40dp"
     android:orientation="vertical"
     tools:context=".ui.UpdateActivity">
+    <include layout="@layout/toolbar"></include>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edJob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Job" />
+
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#ffffff"
+        android:layout_marginHorizontal="40dp"
         android:onClick="Update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Update"/>
 
     <TextView
+        android:layout_marginHorizontal="40dp"
         android:text="Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvName"/>
     <TextView
+        android:layout_marginHorizontal="40dp"
         android:text="Job"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvJob"/>
     <TextView
+        android:layout_marginHorizontal="40dp"
         android:text="UpdateAt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

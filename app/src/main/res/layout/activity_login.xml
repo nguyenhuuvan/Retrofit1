@@ -1,40 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.LoginActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ipEmail"
+    <LinearLayout
+        android:gravity="bottom"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:paddingHorizontal="30dp"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edEmail"
-            android:hint="Email"
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/lienviet"
+            android:layout_weight="2"
+            android:layout_width="180dp"
+            android:layout_height="0dp"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:background="#ffffff"
+            android:padding="16sp"
+            android:text="Đăng nhập"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ipPass"
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:paddingHorizontal="30dp"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:background="#f7f7f7"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edPass"
-            android:hint="Pass"
+        <LinearLayout
+            android:elevation="3dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <Button
-        android:onClick="login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"/>
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:paddingBottom="16sp"
+            android:paddingLeft="16sp"
+            android:paddingRight="16sp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/user"
+                    android:drawablePadding="20dp"
+                    android:hint="Email"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:drawableLeft="@drawable/user" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:passwordToggleEnabled="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+
+                    android:id="@+id/edPassWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="20dp"
+                    android:hint="Pass"
+                    android:inputType="textPassword"
+                    android:textSize="16sp"
+                    android:drawableStart="@drawable/pass"
+                    android:drawableLeft="@drawable/pass" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/chkSavePass"
+                    android:layout_weight="1.2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Lưu mật khẩu" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:onClick="login"
+                    android:layout_marginTop="5dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:textSize="16sp"
+                    android:text="Đăng nhập"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/button_style1"/>
+
+                <Button
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:textSize="16sp"
+                    android:text="Hủy"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/button_style1"
+                    android:layout_marginLeft="10dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:text="Quên mật khẩu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+
+        </LinearLayout>
+        <ProgressBar
+            android:layout_marginTop="25dp"
+            android:id="@+id/progressbar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/hotline"
+            android:paddingBottom="10dp"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Hotline:0329144446"
+            android:gravity="bottom|center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </LinearLayout>

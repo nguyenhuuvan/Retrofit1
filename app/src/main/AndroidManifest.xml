@@ -11,12 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.UpdateActivity"></activity>
-        <activity android:name=".ui.CreatActivity" />
-        <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.EditUserAtivity" />
-        <activity android:name=".ui.Menu">
+        <activity android:name=".ui.UpdateActivity" android:label="Update"></activity>
+        <activity android:name=".ui.CreatActivity" android:label="Creat" />
+        <activity android:name=".ui.MenuActivity" android:label="Menu"/>
+        <activity android:name=".ui.ListUserActivity" android:label="Danh sách" />
+        <activity android:name=".ui.LoginActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

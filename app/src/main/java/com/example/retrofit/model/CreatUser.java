@@ -3,7 +3,7 @@ package com.example.retrofit.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Job {
+public class CreatUser {
     @SerializedName("name")
     @Expose
     private String name;
@@ -51,7 +51,7 @@ public class Job {
 
     @Override
     public String toString() {
-        return "Job{" +
+        return "CreatUser{" +
                 "name='" + name + '\'' +
                 ", job='" + job + '\'' +
                 ", id='" + id + '\'' +

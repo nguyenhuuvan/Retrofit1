@@ -5,12 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.retrofit.APIService;
 import com.example.retrofit.R;
-import com.example.retrofit.model.Error;
 import com.example.retrofit.model.Token;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -21,8 +22,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-    private TextInputEditText edEmail;
-    private TextInputEditText edPass;
+    private EditText edEmail;
+    private EditText edPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,38 +41,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        edEmail = (TextInputEditText) findViewById(R.id.edEmail);
-        edPass = (TextInputEditText) findViewById(R.id.edPass);
+        edEmail =  findViewById(R.id.edEmail);
+        edPass =  findViewById(R.id.edPassWord);
     }
 
     public void login(View view) {
         String pass = edPass.getText().toString().trim();
         String email = edEmail.getText().toString().trim();
-        if (email.isEmpty()) {
-            Toast.makeText(this, "Nhập email", Toast.LENGTH_SHORT).show();
+        if (email.isEmpty()||pass.isEmpty()) {
+            if (pass.isEmpty())
+                edPass.setError("Mời nhập pass");
+            if (email.isEmpty())
+                edEmail.setError("Mời nhập email");
         } else {
-            if(pass.isEmpty()){
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://reqres.in/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                APIService service = retrofit.create(APIService.class);
-                Call<Error> call = service.loginUser2(email);
-                call.enqueue(new Callback<Error>() {
-                    @Override
-                    public void onResponse(Call<Error> call, Response<Error> response) {
-                        if(response.code()==400){
-                            Toast.makeText(LoginActivity.this, "Missing password", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-
-                    @Override
-                    public void onFailure(Call<Error> call, Throwable t) {
-                        Log.e("onFailure", "onFailure: " + t.getMessage());
-                    }
-                });
-            }else{
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("https://reqres.in/")
                         .addConverterFactory(GsonConverterFactory.create())
@@ -87,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     else if(response.body().getToken().equals("QpwL5tke4Pnpja7X4")){
                         Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, MenuActivity.class));
                     }
 
                     }
@@ -100,4 +82,4 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         }
-    }}
+    }

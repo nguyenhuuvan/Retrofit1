@@ -1,6 +1,7 @@
 package com.example.retrofit.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +10,8 @@ import android.widget.TextView;
 
 import com.example.retrofit.APIService;
 import com.example.retrofit.R;
-import com.example.retrofit.model.Job;
 import com.example.retrofit.model.Update;
+import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,8 +23,8 @@ public class UpdateActivity extends AppCompatActivity {
     private TextView tvName;
     private TextView tvJob;
     private TextView tvUpdate;
-
-
+    private Toolbar toolbar;
+    private TextInputEditText edName, edJob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,10 @@ public class UpdateActivity extends AppCompatActivity {
         tvName = (TextView) findViewById(R.id.tvName);
         tvJob = (TextView) findViewById(R.id.tvJob);
         tvUpdate = (TextView) findViewById(R.id.tvUpdate);
+        toolbar = findViewById(R.id.toolbar);
+        edName = findViewById(R.id.edName);
+        edJob = findViewById(R.id.edJob);
+        setSupportActionBar(toolbar);
     }
 
     public void Update(View view) {
@@ -43,21 +48,30 @@ public class UpdateActivity extends AppCompatActivity {
                 .build();
         APIService service = retrofit.create(APIService.class);
 
-        Call<Update> call = service.updatePost("Nguyễn Hữu Văn","Intern Anroid");
-        call.enqueue(new Callback<Update>() {
-            @Override
-            public void onResponse(Call<Update> call, Response<Update> response) {
-                tvJob.setText(response.body().getJob());
-                tvName.setText(response.body().getName());
-                tvUpdate.setText(response.body().getUpdatedAt());
-            }
+        String name = edName.getText().toString().trim();
+        String job = edJob.getText().toString().trim();
+        if (name.isEmpty() || job.isEmpty()) {
+            if (name.isEmpty())
+                edName.setError("Nhập tên");
+            if (job.isEmpty())
+                edJob.setError("Nhập công việc");
+        } else {
+            Call<Update> call = service.update(name, job);
+            call.enqueue(new Callback<Update>() {
+                @Override
+                public void onResponse(Call<Update> call, Response<Update> response) {
+                    tvJob.setText("Job: "+response.body().getJob());
+                    tvName.setText("Name"+response.body().getName());
+                    tvUpdate.setText("UpdateAt: "+response.body().getUpdatedAt());
+                }
 
 
-            @Override
-            public void onFailure(Call<Update> call, Throwable t) {
-                Log.e("onFailure", "onFailure: " + t.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<Update> call, Throwable t) {
+                    Log.e("onFailure", "onFailure: " + t.getMessage());
+                }
+            });
 
+        }
     }
 }

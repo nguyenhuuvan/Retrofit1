@@ -1,10 +1,10 @@
 package com.example.retrofit.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -15,7 +15,7 @@ import com.example.retrofit.adapter.UserAdapter;
 import com.example.retrofit.listener.OnClick;
 import com.example.retrofit.listener.OnDelete;
 import com.example.retrofit.listener.OnEdit;
-import com.example.retrofit.model.Example;
+import com.example.retrofit.model.FullApiUser;
 import com.example.retrofit.model.User;
 
 import java.util.ArrayList;
@@ -27,15 +27,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements OnDelete, OnClick, OnEdit {
+public class ListUserActivity extends AppCompatActivity implements OnDelete, OnClick, OnEdit {
     private RecyclerView rvUser;
     private UserAdapter userAdapter;
     private List<User> userList;
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_user);
 
         initView();
         initAction();
@@ -54,10 +54,11 @@ public class MainActivity extends AppCompatActivity implements OnDelete, OnClick
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         APIService service = retrofit.create(APIService.class);
-        Call<Example> call = service.getListUser();
-        call.enqueue(new Callback<Example>() {
+        Call<FullApiUser> call = service.getListUser();
+        call.enqueue(new Callback<FullApiUser>() {
             @Override
-            public void onResponse(Call<Example> call, Response<Example> response) {
+            public void onResponse(Call<FullApiUser> call, Response<FullApiUser> response) {
+
                 for (int i = 0; i<response.body().getData().size() ; i++) {
                     userList.add(response.body().getData().get(i));
                     userAdapter.changeDataset(userList);
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements OnDelete, OnClick
 
 
             @Override
-            public void onFailure(Call<Example> call, Throwable t) {
+            public void onFailure(Call<FullApiUser> call, Throwable t) {
                 Log.e("onFailure", "onFailure: " + t.getMessage());
             }
         });
@@ -75,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements OnDelete, OnClick
     }
     private void initView() {
         rvUser = findViewById(R.id.rvUser);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     private void initAction() {
@@ -84,15 +87,7 @@ public class MainActivity extends AppCompatActivity implements OnDelete, OnClick
 
     @Override
     public void OnClick(int pos) {
-        Intent intent = new Intent(this,EditUserAtivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt("id",userList.get(pos).getId());
-        bundle.putString("firstname",userList.get(pos).getFirstName());
-        bundle.putString("lastname",userList.get(pos).getLastName());
-        bundle.putString("email",userList.get(pos).getEmail());
-        bundle.putString("avatar",userList.get(pos).getAvatar());
-        intent.putExtras(bundle);
-        startActivity(intent);
+        Toast.makeText(this, "OnClick", Toast.LENGTH_SHORT).show();
     }
 
     @Override

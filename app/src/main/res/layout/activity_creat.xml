@@ -3,36 +3,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:paddingHorizontal="50dp"
     android:layout_height="match_parent"
+
+    android:orientation="vertical"
     tools:context=".ui.CreatActivity">
 
-    <Button
-        android:onClick="Creat"
-        android:text="Creat"
+    <include layout="@layout/toolbar">
+
+    </include>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edJob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Job" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:textColor="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@color/colorPrimaryDark"
+        android:onClick="Creat"
+        android:text="Creat" />
 
     <TextView
-        android:text="Name"
-        android:id="@+id/edName"
+        android:id="@+id/tvName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:text="Name" />
+
     <TextView
-        android:text="Job"
-        android:id="@+id/edJob"
+        android:id="@+id/tvJob"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:text="Job" />
+
     <TextView
-        android:text="UpdateAt"
-        android:id="@+id/edUpdateAt"
+        android:id="@+id/tvCreatAt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:text="UpdateAt" />
+
     <TextView
-        android:text="ID"
-        android:id="@+id/edID"
+        android:id="@+id/tvID"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:text="ID" />
 
 </LinearLayout>
