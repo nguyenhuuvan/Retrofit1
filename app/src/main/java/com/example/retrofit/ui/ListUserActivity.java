@@ -62,6 +62,7 @@ public class ListUserActivity extends AppCompatActivity implements OnDelete, OnC
                 for (int i = 0; i<response.body().getData().size() ; i++) {
                     userList.add(response.body().getData().get(i));
                     userAdapter.changeDataset(userList);
+
                 }
 
             }
